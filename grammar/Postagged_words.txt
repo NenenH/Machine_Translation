@@ -1,0 +1,13 @@
+Kahit	CCT
+masama	JJD
+sa	CCT
+loob	NNC
+lumabas	VBAF
+siya	PRSL
+ng	CCB
+kuwarto	NNC
+para	CCT
+harapin	VBOF
+ang	DTC
+ama	NNC
+.	PMP
