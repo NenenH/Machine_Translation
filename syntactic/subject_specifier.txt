@@ -17,13 +17,13 @@ Pinaglalako | pinaglako [si Ben, ang mga bata, sina Ana at Marie]
 
 Nahulog | nahuhulog| mahuhulog | huhulugin  | huhulugan [ang baso]...
 Naging | magiging puti [ang baso]...
-Niluto ang karne []
-Ano ang binili []
-Binili []...
-Ibinigay []
-Pagbibigyan []
-Ipinanglaro []
-Ipanglalaro []
+Niluto ang karne [ni Ben, ng mga bata, nina Ana at Marie]
+Ano ang binili [ni Ben, ng mga bata, nina Ana at Marie]
+Binili [ni Ben, ng mga bata, nina Ana at Marie]
+Ibinigay [ni Ben, ng mga bata, nina Ana at Marie]
+Pagbibigyan [ni Ben, ng mga bata, nina Ana at Marie]
+Ipinanglaro [ni Ben, ng mga bata, nina Ana at Marie]
+Ipanglalaro [ni Ben, ng mga bata, nina Ana at Marie]
 Kahuhulog lamang [ni Ben, ng mga bata, nina Ana at Marie] 
 
 
@@ -31,5 +31,8 @@ ADJECTIVE
 Mabait [si Ben, ang mga bata, sina Ana at Marie]
 
 
+RULES OF PREPOSITION
+ng
+if(Start) | if(prevTag.contains(VB)) : the
 
 

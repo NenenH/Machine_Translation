@@ -603,7 +603,7 @@ alive buhay
 alkaline alkalina
 alkaloid alkaloyde
 all lahat
-allaÂ alla
+allaï¿½ alla
 Allah Ala
 allay sumugpo
 allegation paninindigan
@@ -1061,7 +1061,7 @@ apse apsis
 apt matalino
 aptitude kakayahan
 aptness kakayahan
-aquaÂ aqua
+aquaï¿½ aqua
 aquamarine akwamarin
 aquarium akwaryum
 aquariums Aquarium
@@ -1212,7 +1212,7 @@ artistry kasiningan
 artists artist
 arts sining
 as bilang
-AsaÂ Asa
+Asaï¿½ Asa
 asbestos asbesto
 climb umakyat
 ascended umakyat
@@ -1939,7 +1939,7 @@ benefits benepisyo
 benevolence kabaitan
 benevolent mapagkawanggawa
 benighted ginabi
-benignant mabait
+kind mabait
 benignity kabaitan
 bent nakatungo
 benumbed manhid
@@ -12615,7 +12615,7 @@ lyric awit
 lyrical liriko
 lys liwanag
 Ma Nanay
-maÂ nanay
+maï¿½ nanay
 mac kapote
 macabre mapanglaw
 macaroni makaroni

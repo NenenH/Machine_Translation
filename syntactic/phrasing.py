@@ -106,7 +106,7 @@ def phrase():
 
         # phrase start with Noun
         elif str(sentence[x][1]).__contains__("NN") and x == 0:
-            print("Current Word [RB]: ", sentence[x])
+            print("Current Word [NN]: ", sentence[x])
             while not (str(sentence[x][1]).__contains__("VB") or str(sentence[x][1]).__contains__("PMP") or str(
                     sentence[x][1]).__contains__("PMQ")):
                 print("Current Word [NN]: ", sentence[x])
@@ -124,7 +124,7 @@ def phrase():
             phraseList.append(phrase)
             phrase = []
 
-        # phrase start with Pronoun
+        # phrase start with RBW
         elif str(sentence[x][1]).__contains__("RBW"):
             print("Current Word [RBW]: ", sentence[x])
             phrase.append(sentence[x])
@@ -189,7 +189,7 @@ def phrase():
 
 #Transfer the filipino structure to english structure
 def structure():
-    i = j = 0
+    i = 0
 
     phrases = phrase()
 
@@ -201,15 +201,15 @@ def structure():
         #VERBAL PHRASE
         if str(phrases[i][0][1]).__contains__("VB"):
             print("VERBAL PHRASE")
+            print(str(phrases[i][0][0])[0:2], ": ", str(phrases[i][0][0])[2:4])
 
            #ACTIVE VOICE
            #-um -, -umi -, *inuulit, mag -, ma -, mang -, nag -, pinag -
             if str(phrases[i][0][0]).__contains__("um") or str(phrases[i][0][0]).__contains__("umi") \
                     or str(phrases[i][0][0]).lower().__contains__("mag") or str(phrases[i][0][0]).lower().__contains__("ma") \
                     or str(phrases[i][0][0]).lower().__contains__("mang") or str(phrases[i][0][0]).lower().__contains__("nag") \
-                    or str(phrases[i][0][0]).lower().__contains__("pinag"):
+                    or str(phrases[i][0][0]).lower().__contains__("pinag") or str(phrases[i][0][0])[0:2].lower() == (phrases[i][0][0])[2:4].lower():
                 print(phrases[i][0][0], " [:] ", phrases[i][0][1])
-                print("J: ", j)
                 print("ACTIVE VOICE")
 
                 while j < length:
@@ -223,7 +223,7 @@ def structure():
                     #ang
                     elif str(phrases[i][j][0]).lower().__contains__("ang") and str(phrases[i][j][1]).__contains__("DTC"):
                         x = 0
-                        print("Pmnasok", phrases[i][j][1], j)
+                        print("  [ang]>", phrases[i][j][1], j)
 
                         while str(phrases[i][j][1]).__contains__("NN") or str(phrases[i][j][1]).__contains__("PMC") \
                                 or str(phrases[i][j][0]).__contains__("at") or str(phrases[i][j][0]).__contains__("ang") \
@@ -238,14 +238,13 @@ def structure():
 
                             if j == length:
                                 break
-                            print("Pumasok", j)
                         # print(phrases[i][j], "DONE", j)
                         break
 
                     #sina
                     elif str(phrases[i][j][0]).__contains__("sina") and  str(phrases[i][j][1]).__contains__("DTP"):
                         x = 0
-                        print("Pmnasok", phrases[i][j][1], j)
+                        print("  [sina]>", phrases[i][j][1], j)
 
                         while str(phrases[i][j][1]).__contains__("NN") or str(phrases[i][j][1]).__contains__("PMC") \
                                 or str(phrases[i][j][0]).__contains__("at") or str(phrases[i][j][0]).__contains__("sina"):
@@ -257,7 +256,6 @@ def structure():
 
                             if j == length:
                                 break
-                            print("Pumasok", j)
                        # print(phrases[i][j], "DONE", j)
                         break
 
@@ -267,7 +265,7 @@ def structure():
                         # phrases[i].insert(1, phrases[i].pop(j+1))
                         # print(phrases[i][j],"[DTP | si]", j)
                         x = 0
-                        print("Pmnasoksdasdfjh", phrases[i][j][1], j)
+                        print("  [si]>", phrases[i][j][1], j)
 
                         while str(phrases[i][j][1]).__contains__("NN") or str(phrases[i][j][1]).__contains__("PMC") \
                                 or str(phrases[i][j][0]).__contains__("at") or str(phrases[i][j][0]).__contains__("si"):
@@ -280,7 +278,7 @@ def structure():
 
                             if j == length:
                                 break
-                            print("Pumasok", j)
+
                         # print(phrases[i][j], "DONE", j)
                         break
 
@@ -292,9 +290,7 @@ def structure():
                     or str(phrases[i][0][0]).lower().__contains__("ka") or str(phrases[i][0][0]).lower().__contains__("pag") \
                     or str(phrases[i][0][0]).lower().__contains__("ipinang") or str(phrases[i][0][0]).lower().__contains__("ipang"):
                 print(phrases[i][0][0], " [:] ", phrases[i][0][1])
-                print("J: ", j)
                 print("PASSIVE VOICE")
-                print(phrases[0][0][1])
 
                 print(phrases[i])
 
@@ -324,7 +320,7 @@ def structure():
 
                             if j == length:
                                 break
-                            print("Pumasok", j)
+
                         # print(phrases[i][j], "DONE", j)
                         break
 
@@ -335,7 +331,7 @@ def structure():
 
 
                         while str(phrases[i][j][1]).__contains__("NN") or str(phrases[i][j][1]).__contains__("PMC") \
-                                or str(phrases[i][j][0]).__contains__("at") or str(phrases[i][j][0]).__contains__("ng") \
+                                or str(phrases[i][j][0]).__contains__("at") or (str(phrases[i][j][0]).__contains__("ng") and not str(phrases[i][j][0]).__contains__("ang") )\
                                 or str(phrases[i][j][1]).__contains__("JJ") or str(phrases[i][j][0]).__contains__("mga") \
                                 or str(phrases[i][j][0]).__contains__("na") or str(phrases[i][j][1]).__contains__("PRSP"):
                             print(phrases[i][j], "[CCB | ng]", j)
@@ -346,7 +342,7 @@ def structure():
 
                             if j == length:
                                 break
-                            print("Pumasok", j)
+
                         # print(phrases[i][j], "DONE", j)
                         break
 
@@ -365,7 +361,7 @@ def structure():
 
                             if j == length:
                                 break
-                            print("Pumasok", j)
+
                        # print(phrases[i][j], "DONE", j)
                         break
 
@@ -389,7 +385,7 @@ def structure():
 
                             if j == length:
                                 break
-                            print("Pumasok", j)
+
                         # print(phrases[i][j], "DONE", j)
                         break
 
@@ -409,7 +405,7 @@ def structure():
                 # ang
                 elif str(phrases[i][j][0]).__contains__("ang") and str(phrases[i][j][1]).__contains__("DTC"):
                     x = 0
-                    print("Pmnasok", phrases[i][j][1], j)
+                    print("  [ang]>", phrases[i][j][1], j)
 
                     while str(phrases[i][j][1]).__contains__("NN") or str(phrases[i][j][1]).__contains__("PMC") \
                             or str(phrases[i][j][0]).__contains__("at") or str(phrases[i][j][0]).__contains__("ang") \
@@ -423,14 +419,14 @@ def structure():
 
                         if j == length:
                             break
-                        print("Pumasok", j)
+
                     # print(phrases[i][j], "DONE", j)
                     break
 
                 # sina
                 elif str(phrases[i][j][0]).__contains__("sina") and str(phrases[i][j][1]).__contains__("DTP"):
                     x = 0
-                    print("Pmnasok", phrases[i][j][1], j)
+                    print("  [sina]>", phrases[i][j][1], j)
 
                     while str(phrases[i][j][1]).__contains__("NN") or str(phrases[i][j][1]).__contains__("PMC") \
                             or str(phrases[i][j][0]).__contains__("at") or str(phrases[i][j][0]).__contains__("sina"):
@@ -442,7 +438,7 @@ def structure():
 
                         if j == length:
                             break
-                        print("Pumasok", j)
+
                     # print(phrases[i][j], "DONE", j)
                     break
 
@@ -454,7 +450,7 @@ def structure():
                     # print(phrases[i][j], "[DTP | si]", j)
                     # break
                     x = 0
-                    print("Pmnasoksdasdfjh", phrases[i][j][1], j)
+                    print("  [si]>", phrases[i][j][1], j)
 
                     while str(phrases[i][j][1]).__contains__("NN") or str(phrases[i][j][1]).__contains__("PMC") \
                             or str(phrases[i][j][0]).__contains__("at") or str(phrases[i][j][0]).__contains__("si"):
@@ -467,7 +463,7 @@ def structure():
 
                         if j == length:
                             break
-                        print("Pumasok", j)
+
                     # print(phrases[i][j], "DONE", j)
                     break
 
@@ -487,7 +483,7 @@ def structure():
                 #ang
                 elif str(phrases[i][j][0]).lower().__contains__("ang") and str(phrases[i][j][1]).__contains__("DTC"):
                     x = 0
-                    print("Pmnasok", phrases[i][j][1], j)
+                    print("  [ang]>", phrases[i][j][1], j)
 
                     while str(phrases[i][j][1]).__contains__("NN") or str(phrases[i][j][1]).__contains__("PMC") \
                             or str(phrases[i][j][0]).__contains__("at") or str(phrases[i][j][0]).__contains__("ang") \
@@ -503,14 +499,14 @@ def structure():
 
                         if j == length:
                             break
-                        print("Pumasok", j)
+
                     # print(phrases[i][j], "DONE", j)
                     break
 
                 #sina
                 elif str(phrases[i][j][0]).__contains__("sina") and  str(phrases[i][j][1]).__contains__("DTP"):
                     x = 0
-                    print("Pmnasok", phrases[i][j][1], j)
+                    print("  [sina]>", phrases[i][j][1], j)
 
                     while str(phrases[i][j][1]).__contains__("NN") or str(phrases[i][j][1]).__contains__("PMC") \
                             or str(phrases[i][j][0]).__contains__("at") or str(phrases[i][j][0]).__contains__("sina"):
@@ -522,7 +518,7 @@ def structure():
 
                         if j == length:
                             break
-                        print("Pumasok", j)
+
                    # print(phrases[i][j], "DONE", j)
                     break
 
@@ -532,7 +528,7 @@ def structure():
                     # phrases[i].insert(1, phrases[i].pop(j+1))
                     # print(phrases[i][j],"[DTP | si]", j)
                     x = 0
-                    print("Pmnasoksdasdfjh", phrases[i][j][1], j)
+                    print("  [si]>", phrases[i][j][1], j)
 
                     while str(phrases[i][j][1]).__contains__("NN") or str(phrases[i][j][1]).__contains__("PMC") \
                             or str(phrases[i][j][0]).__contains__("at") or str(phrases[i][j][0]).__contains__("si"):
@@ -545,7 +541,7 @@ def structure():
 
                         if j == length:
                             break
-                        print("Pumasok", j)
+
                     # print(phrases[i][j], "DONE", j)
                     break
 
@@ -559,14 +555,13 @@ def translate():
     phrases1 = structure()
     print('\n\n')
     i = x = 0
-    translated = ''
     prevTag = ''
     nextTag = ''
     plural = 0
 
     print("START TRANSLATE")
     while i < len(phrases1):
-        print('\n', phrases1[i])
+       # print('\n', phrases1[i])
         passed = 0
 
         while x < len(phrases1[i]):
@@ -579,15 +574,34 @@ def translate():
             if x < (len(phrases1[i]) - 1):
                nextTag = phrases1[i][x+1][1]
 
+            #Checking 'ang'
             if str(tag).__contains__("DTP"):
                 if str(word).__contains__("ang"):
                     translated = 'the'
                 flag = 0
 
+            #Checking 'ng'
+            elif str(tag).__contains__("CCB") and str(word).__contains__("ng"):
+                if (str(phrases1[i][0][0]) == 'ng' or str(prevTag).__contains__('VB')) and len(phrases1[i]) != 1:
+                    translated = 'the'
+                elif str(phrases1[i][0][0]) == 'ng':
+                    translated = 'when'
+                else:
+                    translated = 'of'
+                flag = 0
+
+            # Checking 'na'
+            elif str(tag).__contains__("CCP") and str(word).__contains__("na"):
+                if str(prevTag).__contains__('VB') or str(prevTag).__contains__('JJ') :
+                    translated = ''
+                flag = 0
+
+            #Checking Plural Form
             elif str(tag).__contains__("DTCP"):
-               plural=1
+               plural = 1
                flag = 0
-        
+
+            #Checking Pronouns
             elif str(tag).__contains__("PRS") or str(tag).__contains__('PRP'):
                 if str(phrases1[i][x][1]).__contains__('PRSP') and (str(nextTag).__contains__('NN') or str(nextTag).__contains__('DTCP')):
                     tense = 'pos'
@@ -616,6 +630,7 @@ def translate():
                 flag = 0
 
             else:
+                #if Plural Form
                 if str(tag).__contains__("NN") and plural == 1:
                     with open('Plural.csv') as fp:
                         line = fp.readline()

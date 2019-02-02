@@ -1,9 +1,13 @@
-Nahulog	VBTS
+Kinuha	VBOF
+na	RBI
+ni	DTP
+Anna	NNP
 ang	DTC
 baso	NNC
-sa	CCT
-ilalim	JJD
 ng	CCB
-lamesa	NNC
+maging	VBW
+isang	PRI_CCP
+babae	NNC
+sya	PRS
 .	PMP
 
