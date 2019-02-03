@@ -1,13 +1,12 @@
-Kinuha	VBOF
-na	RBI
-ni	DTP
-Anna	NNP
+Bumili	VBTS_VBAF
 ang	DTC
-baso	NNC
+maganda	JJD
+,	PMC
+mabait	JJD
+at	CCA
+magandang	JJD_CCP
+guro	NNC
 ng	CCB
-maging	VBW
-isang	PRI_CCP
-babae	NNC
-sya	PRS
+baso	NNC
 .	PMP
 

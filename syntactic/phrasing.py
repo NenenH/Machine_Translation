@@ -72,6 +72,7 @@ def phrase():
     sentence = stem()
     phrase = []
     phraseList = []
+    prevTag = ''
     print(sentence)
     x = 0
     while x < len(sentence):
@@ -169,7 +170,7 @@ def phrase():
                 if (str(sentence[x][1]).__contains__("CC") or str(sentence[x][1]).__contains__("RBW")) and str(sentence[x + 1][1]).__contains__("VB"):
                     break
 
-                if str(sentence[x][1]).__contains__("JJ") and not (str(sentence[x-1][1]).__contains__("DT")
+                if str(sentence[x][1]).__contains__("JJ") and not (str(sentence[x-1][1]).__contains__("DT") or str(sentence[x-2][1]).__contains__("JJ")
                                                                    or (str(sentence[x-1][0]).__contains__("ng") and str(sentence[x-1][1]).__contains__("CCB"))):
                     break
 
@@ -182,6 +183,7 @@ def phrase():
             x -= 1
 
         x += 1
+        prevTag = sentence[x-1][1]
     phrase = []
     phrase.append(sentence[len(sentence) -1])
     phraseList.append(phrase)
@@ -561,8 +563,9 @@ def translate():
 
     print("START TRANSLATE")
     while i < len(phrases1):
-       # print('\n', phrases1[i])
+        print('\n', phrases1[i])
         passed = 0
+        change = 0
 
         while x < len(phrases1[i]):
             translated = ''
@@ -592,7 +595,7 @@ def translate():
 
             # Checking 'na'
             elif str(tag).__contains__("CCP") and str(word).__contains__("na"):
-                if str(prevTag).__contains__('VB') or str(prevTag).__contains__('JJ') :
+                if str(prevTag).__contains__('VB') or str(prevTag).__contains__('JJ'):
                     translated = ''
                 flag = 0
 
@@ -603,10 +606,14 @@ def translate():
 
             #Checking Pronouns
             elif str(tag).__contains__("PRS") or str(tag).__contains__('PRP'):
-                if str(phrases1[i][x][1]).__contains__('PRSP') and (str(nextTag).__contains__('NN') or str(nextTag).__contains__('DTCP')):
+                translated = ''
+                # print('Next tag: ', nextTag)
+                if str(phrases1[i][x][1]).__contains__('PRSP') and (str(nextTag).__contains__('NN') or str(nextTag).__contains__('DTCP') or str(nextTag).__contains__('JJ')):
                     tense = 'pos'
                 elif (str(phrases1[i][x][1]).__contains__('PRS') or str(phrases1[i][x][1]).__contains__('PRP')) and str(prevTag).__contains__('NN'):
                     tense = 'pos'
+                    translated = 'of '
+
                 elif (str(phrases1[i][0][1]).__contains__('PRS') or str(phrases1[i][0][1]).__contains__('PRP')) and passed != 1:
                     tense = 'subj'
                     passed = 1
@@ -618,11 +625,14 @@ def translate():
                     while line:
                         temp = re.findall(r"[\w']+|[+|/ ]", line)
                         if (str(temp[0]).lower() == str(word).lower()) and (tense == temp[2]):
-                            translated = temp[1]
+                            translated += temp[1]
                             flag = 0
                             break
                         line = fp.readline()
                 fp.close()
+
+
+
                 flag = 0
 
             elif str(tag).__contains__("NNP"):
