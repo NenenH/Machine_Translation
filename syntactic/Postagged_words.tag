@@ -1,6 +1,8 @@
 Si	DTP
 Anna	NNP
 ay	LM
-palabiro	JJD
+panlaban	JJD
+sa	CCT
+sakit	NNC
 .	PMP
 
