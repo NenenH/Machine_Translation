@@ -21,6 +21,9 @@ def postTagged(n):
         line = fp.readline()
         while line:
             temp = re.findall(r"[\w']+|[-+|,.?]", line)
+            if len(temp) > 2:
+                temp = [temp[0] + temp[1] + temp[2], temp[3] ]
+
             rules.append(temp)
             if temp[0] == '.' or temp[0] == '?':
                 fp.close()
@@ -73,6 +76,7 @@ def phrase():
     phrase = []
     phraseList = []
     prevTag = ''
+    # cc = ['samantala', 'ngunit', 'bagkus', 'kundi', 'imbes', 'kahit', 'maliban', 'bilang', 'bagamat', 'datapwat', 'samantala', 'habang', 'kasi', 'dahil', 'kung', 'sapagkat', 'dahilan', 'palibhasa', 'upang', 'gayundin', 'basta\'t']
     print(sentence)
     x = 0
     while x < len(sentence):
@@ -140,7 +144,7 @@ def phrase():
             phrase = []
 
         # phrase start with Determiner
-        elif str(sentence[x][1]).__contains__("DT") and x == 0:
+        elif str(sentence[x][1]).__contains__("DT"):
             while not (str(sentence[x][1]).__contains__("VB") or str(sentence[x][1]).__contains__("PMP") or str(sentence[x][1]).__contains__("PMQ")):
                 print("Current Word [DT]: ", sentence[x])
                 phrase.append(sentence[x])
@@ -166,13 +170,28 @@ def phrase():
         elif str(sentence[x][1]).__contains__("VB"):
             print(sentence[x])
             while not (str(sentence[x][1]).__contains__("PMP") or str(sentence[x][1]).__contains__("PMQ")):
+                go = 0
                 print("Current Word [VB]: ", sentence[x])
                 if (str(sentence[x][1]).__contains__("CC") or str(sentence[x][1]).__contains__("RBW")) and str(sentence[x + 1][1]).__contains__("VB"):
+                    print('Dito pumasok')
                     break
 
-                if str(sentence[x][1]).__contains__("JJ") and not (str(sentence[x-1][1]).__contains__("DT") or str(sentence[x-2][1]).__contains__("JJ")
+                # #samantala, ngunit, bagkus, kundi, imbes, kahit, maliban, bilang, bagamat, datapwat, samantala, habang, kasi, dahil, kung, sapagkat, dahilan, palibhasa, upang, gayundin, basta't
+                # elif str(sentence[x][1]).__contains__("CC") or str(sentence[x][1]).__contains__("RBW"):
+                #     z = 0
+                #     while z < len(cc):
+                #         if str(cc[z]) == str(sentence[x][0]):
+                #             print('PU<ASG"JA')
+                #             go = 1
+                #         z+=1
+                #     go = 1
+                #     break
+
+                if str(sentence[x][1]).__contains__("JJ") and not (str(sentence[x-1][1]).__contains__("DT") or str(sentence[x-2][1]).__contains__("JJ") or str(sentence[x][1]).__contains__("JJN")
                                                                    or (str(sentence[x-1][0]).__contains__("ng") and str(sentence[x-1][1]).__contains__("CCB"))):
                     break
+
+
 
                 phrase.append(sentence[x])
 
@@ -412,7 +431,8 @@ def structure():
                     while str(phrases[i][j][1]).__contains__("NN") or str(phrases[i][j][1]).__contains__("PMC") \
                             or str(phrases[i][j][0]).__contains__("at") or str(phrases[i][j][0]).__contains__("ang") \
                             or str(phrases[i][j][1]).__contains__("JJ") or str(phrases[i][j][0]).__contains__("mga") \
-                            or str(phrases[i][j][0]).__contains__("na") or str(phrases[i][j][1]).__contains__("PRSP"):
+                            or str(phrases[i][j][0]).__contains__("na") or str(phrases[i][j][1]).__contains__("PRSP") \
+                            or str(phrases[i][j][0]).__contains__("si"):
                         print(phrases[i][j], "[DTC | ang]", j)
                         phrases[i].insert(x, phrases[i].pop(j))
 
@@ -490,7 +510,8 @@ def structure():
                     while str(phrases[i][j][1]).__contains__("NN") or str(phrases[i][j][1]).__contains__("PMC") \
                             or str(phrases[i][j][0]).__contains__("at") or str(phrases[i][j][0]).__contains__("ang") \
                             or str(phrases[i][j][1]).__contains__("JJ") or str(phrases[i][j][0]).__contains__("mga") \
-                            or str(phrases[i][j][0]).__contains__("na") or str(phrases[i][j][1]).__contains__("PRSP"):
+                            or str(phrases[i][j][0]).__contains__("na") or str(phrases[i][j][1]).__contains__("PRSP") \
+                            or str(phrases[i][j][0]).__contains__("si"):
                         print(phrases[i][j], "[DTC | ang]", j)
                         phrases[i].insert(x, phrases[i].pop(j))
 
@@ -551,7 +572,6 @@ def structure():
         i += 1
     return phrases
 
-
 #Translate
 def translate():
     phrases1 = structure()
@@ -581,6 +601,8 @@ def translate():
             if str(tag).__contains__("DTP"):
                 if str(word).__contains__("ang"):
                     translated = 'the'
+                elif str(word).__contains__("kay"):
+                    translated = 'to'
                 flag = 0
 
             #Checking 'ng'
