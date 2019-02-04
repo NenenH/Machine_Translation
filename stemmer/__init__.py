@@ -112,7 +112,7 @@ def rootWord():
 
             print(toRoot[0])
 
-        elif str(toRoot[1]).__contains__("JJ"):
+        elif str(toRoot[1]).__contains__("JJ") or str(toRoot[1]).__contains__("RBD"):
             for adj in adjUnlapi:
                 if adj == str(toRoot[0])[0:len(adj)].lower():
                     print("->", adj)
