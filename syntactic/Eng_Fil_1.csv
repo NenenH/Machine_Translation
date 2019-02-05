@@ -167,6 +167,7 @@ accomplishment,katuparan,NN
 accordance,alinsunod,NN
 accordant,magkasundo,NN
 accorded,ibinibigay,VBN
+according,ayon,RB
 accordingly,kaya,RB
 accordion,akurdyon,NN
 accountability,pananagutan,NN
@@ -651,6 +652,7 @@ ally,kapanalig,RB
 almanac,almanake,NN
 almond,pili,NN
 almost,halos,RB
+almost,halos,JJ
 alms,limos,NNS
 aloe,eloe,NN
 aloof,malayo,NN
@@ -2117,6 +2119,7 @@ blade,talim,NN
 blague,kalokohan,NN
 blah,kalokohan,NN
 blame,pagsisi,NN
+blamed,isinisi,VBN
 blamed,sinisi,VBN
 blamelessly,matuwid,RB
 blames,sinisisi,NNS
@@ -7208,7 +7211,6 @@ endeavoured,Sinikap,VBN
 endeavouring,nagsisikap,VBG
 ended,natapos,VBN
 endemic,katutubo,JJ
-endeth,nagtapos,NNS
 ending,katapusan,VBG
 ENDNOTES,TALABABA,NNS
 endorse,eendorso,NN
@@ -7994,7 +7996,7 @@ faintest,pinakamalabong,NN
 faintly,mahina,RB
 faints,himatayin,NNS
 fair,makatarungan,NN
-fairest,pinakamaganda,NN
+fairest,pinakamaganda,JJ
 fairing,pagpapatas,VBG
 fairness,pagkamakatarungan,NN
 fairy,engkanto,NN
@@ -8363,10 +8365,12 @@ fingers,daliri,NNS
 finical,maselan,JJ
 finicky,maselan,NN
 finish,tapusin,NN
+finished,nagtapos,VBN
 finished,tapos,VBN
 finisher,nagtatapos,NN
-finishes,pagda,NNS
+finishes,pagtapos,NNS
 finishing,pagtatapos,VBG
+finished,matapos,VBN
 finland,Pinlandiya,NN
 finny,mapalikpik,NN
 fins,palikpik,NNS
@@ -8597,7 +8601,7 @@ foal,bisiro,NN
 foam,kapa,NN
 foamy,mabula,NN
 fob,tanggalin,NN
-focal,kalagitnaan,JJ
+center,kalagitnaan,JJ
 focus,pokus,NN
 focused,nakatutok,VBN
 focuses,nakatutok,NNS
@@ -8826,6 +8830,7 @@ founding,bangon,VBG
 foundling,pulot,VBG
 foundry,pandayan,NN
 fount,benditahan,NN
+four,apat,JJ
 four,apat,CD
 fourfold,makaapat,NN
 fours,nakadapa,NNS
@@ -11088,6 +11093,7 @@ initial,una,JJ
 initialled,initialed,VBN
 initially,una,RB
 initiate,simulan,NN
+initiated,nanguna,VBN
 initiated,sinimulan,VBN
 initiates,pasimulan,NNS
 initiating,pagpapasimuno,VBG
@@ -11353,7 +11359,7 @@ interstitial,panggitna,JJ
 intertwine,maglala,NN
 intertwined,kaakibat,VBN
 interval,agwat,NN
-intervals,pagitan,NNS
+between,pagitan,NNS
 intervene,mamagitan,NN
 intervened,namagitan,VBN
 intervening,pagitan,VBG
@@ -16993,6 +16999,7 @@ randomised,randomized,VBN
 randomly,sapalaran,RB
 randy,bastos,NN
 range,saklaw,NN
+until,hanggang,RB
 ranging,hanggang,VBG
 rank,ranggo,NN
 ranked,ranggo,NNS
@@ -22039,11 +22046,11 @@ tweak,sabunutan,NN
 tweet,tiririt,NN
 tweets,tweet,NNS
 tweezers,sipit,NNS
-twelfth,panlabindalawa,NN
-twelve,labindalawang,NN
-twentieth,ikadalawampu,NNS
-twenty,dalawampung,NN
-twiddle,paikutin,NN
+twelfth,panlabindalawa,JJ
+twelve,labindalawang,JJ
+twentieth,ikadalawampu,JJ
+twenty,dalawampung,JJ
+twiddle,paikutin,JJ
 twiggy,marupok,NN
 twilight,silim,NN
 twin,kambal,NN
@@ -22057,6 +22064,7 @@ twister,mandaraya,NN
 twit,panlilibak,NN
 twitch,kibit,NN
 twitter,nerbiyos,NN
+two,dalawa,JJ
 two,dalawa,CD
 twosome,kambal,NN
 tying,tinali,VBG
@@ -23050,6 +23058,7 @@ whelk,welk,NN
 whelp,tuta,NN
 when,kailan,WRB
 whenever,kapag,NN
+nevertheless,gayunpaman,WRB
 where,saan,WRB
 whereabouts,kinaroroonan,NNS
 whereas,samantala,NNS
@@ -24146,7 +24155,7 @@ minutiae,detalye,NNS
 monies,perang,NNS
 mothers,ina,NNS
 mouths,bibig,NNS
-mules,mula,NNS
+from,mula,RB
 munitions,kagamitang,NNS
 mutes,pag,NNS
 mythology,alamat,NNS
