@@ -12,9 +12,9 @@ ko,mine,pos
 mo,you,subj
 mo,yours,pos
 niya,he,subj
-niya,his,pos
+niya,him,pos
 nya,he,subj
-nya,his,pos
+nya,him,pos
 kita,I,subj
 kami,we,subj
 tayo,we,subj
@@ -22,7 +22,7 @@ kayo,you,subj
 sila,they,subj
 sila,them,obj
 nila,they,subj
-nila,their,pos
+nila,them,pos
 namin,we,subj
 namin,ours,pos
 natin,we,subj

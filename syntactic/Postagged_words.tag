@@ -1,8 +1,8 @@
-Si	DTP
+Kumain	VBAF
+si	DTP
 Anna	NNP
-ay	LM
-panlaban	JJD
-sa	CCT
-sakit	NNC
+dahil	CCR
+nagugutom	VBTR
+sya	PRS
 .	PMP
 

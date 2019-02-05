@@ -90,7 +90,10 @@ def rootWord():
 
 
             #gitlapi
-            if str(toRoot[0]).lower().__contains__("umi"):
+            if str(toRoot[0]).lower().__contains__("uma"):
+                toRoot[0] = (toRoot[0])[4: len(toRoot[0])]
+
+            elif str(toRoot[0]).lower().__contains__("umi"):
                 toRoot[0] = (toRoot[0])[4: len(toRoot[0])]
 
             elif str(toRoot[0]).lower().__contains__("um"):
@@ -127,6 +130,7 @@ def rootWord():
                     toRoot[0] = (toRoot[0])[len(nn): len(toRoot[0])]
                     print(toRoot[0])
                     break
+    return toRoot
 
 rootWord()
 print('Done')

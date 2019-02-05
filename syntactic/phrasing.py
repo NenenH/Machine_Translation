@@ -21,6 +21,7 @@ def postTagged(n):
         line = fp.readline()
         while line:
             temp = re.findall(r"[\w']+|[-+|,.?]", line)
+            print(temp)
             if len(temp) > 2:
                 temp = [temp[0] + temp[1] + temp[2], temp[3] ]
 
@@ -70,13 +71,71 @@ def stem():
 
     return toStem
 
+def rootWord(toRoot):
+    verbUnlapi =['nakipag', 'nakikipag,' 'magpapa', 'magpa', 'mapagma', 'magkasing', 'mapang', 'kaka', 'kapapa','ka', 'nakapag', 'pinag', 'pina', 'mag', 'mai',  'makapag',  'mang',  'man',  'mapa'  'ma',   'nag',  'nang',  'nam', 'nai',  'na', 'pinag', 'ipinang', 'ni', 'i', 'tagapag','taga', 'tiga']
+    adjUnlapi = ['kasing', 'magsing', 'sing', 'pinaka', 'mapang', 'mapam', 'ma', 'pang', 'pan', 'pala']
+    nounUnlapi = ['tagapag', 'tigapag',  'taga',  'tiga',  'pakikipag',  'pag', 'man']
+
+    for toRoot in toRoot:
+        if str(toRoot[1]).__contains__("VB"):
+            #unlapi
+            for vp in verbUnlapi:
+                if vp == str(toRoot[0])[0:len(vp)].lower():
+                    print("->", vp)
+                    toRoot[0] = (toRoot[0])[len(vp): len(toRoot[0])]
+                    break
+            #inuulit
+            if str(toRoot[0])[0:2].lower() == (toRoot[0])[2:4].lower():
+                toRoot[0] = (toRoot[0])[2: len(toRoot[0])]
+
+
+            #gitlapi
+            if str(toRoot[0]).lower().__contains__("umi"):
+                toRoot[0] = (toRoot[0])[4: len(toRoot[0])]
+
+            elif str(toRoot[0]).lower().__contains__("um"):
+                toRoot[0] = (toRoot[0])[0] + (toRoot[0])[3: len(toRoot[0])]
+
+            elif str(toRoot[0]).lower().__contains__("in") and str(toRoot[0]).lower()[0] == 'i':
+                toRoot[0] = (toRoot[0])[1] + (toRoot[0])[4: len(toRoot[0])]
+
+            elif str(toRoot[0]).lower().__contains__("in"):
+                toRoot[0] = (toRoot[0])[0] + (toRoot[0])[3: len(toRoot[0])]
+
+            #hulapi
+            if str(toRoot[0]).lower().__contains__("han"):
+                toRoot[0] = (toRoot[0])[0: len(toRoot[0]) - 3]
+            elif str(toRoot[0]).lower().__contains__("hin"):
+                toRoot[0] = (toRoot[0])[0: len(toRoot[0]) - 3]
+            elif (toRoot[0])[len(toRoot)-2: len(toRoot)] == 'an':
+                toRoot[0] = (toRoot[0])[0: len(toRoot[0]) - 2]
+
+            print(toRoot[0])
+
+        elif str(toRoot[1]).__contains__("JJ") or str(toRoot[1]).__contains__("RBD"):
+            for adj in adjUnlapi:
+                if adj == str(toRoot[0])[0:len(adj)].lower():
+                    print("->", adj)
+                    toRoot[0] = (toRoot[0])[len(adj): len(toRoot[0])]
+                    print(toRoot[0])
+                    break
+
+        elif str(toRoot[1]).__contains__("NNC"):
+            for nn in nounUnlapi:
+                if nn == str(toRoot[0])[0:len(nn)].lower():
+                    print("->", nn)
+                    toRoot[0] = (toRoot[0])[len(nn): len(toRoot[0])]
+                    print(toRoot[0])
+                    break
+    return toRoot
+
 #Return phrases
 def phrase():
     sentence = stem()
     phrase = []
     phraseList = []
     prevTag = ''
-    # cc = ['samantala', 'ngunit', 'bagkus', 'kundi', 'imbes', 'kahit', 'maliban', 'bilang', 'bagamat', 'datapwat', 'samantala', 'habang', 'kasi', 'dahil', 'kung', 'sapagkat', 'dahilan', 'palibhasa', 'upang', 'gayundin', 'basta\'t']
+    cc = ['samantala', 'ngunit', 'bagkus', 'kundi', 'imbes', 'kahit', 'maliban', 'bilang', 'bagamat', 'datapwat', 'samantala', 'habang', 'kasi', 'dahil', 'kung', 'sapagkat', 'dahilan', 'palibhasa', 'upang', 'gayundin', 'basta\'t']
     print(sentence)
     x = 0
     while x < len(sentence):
@@ -176,16 +235,17 @@ def phrase():
                     print('Dito pumasok')
                     break
 
-                # #samantala, ngunit, bagkus, kundi, imbes, kahit, maliban, bilang, bagamat, datapwat, samantala, habang, kasi, dahil, kung, sapagkat, dahilan, palibhasa, upang, gayundin, basta't
-                # elif str(sentence[x][1]).__contains__("CC") or str(sentence[x][1]).__contains__("RBW"):
-                #     z = 0
-                #     while z < len(cc):
-                #         if str(cc[z]) == str(sentence[x][0]):
-                #             print('PU<ASG"JA')
-                #             go = 1
-                #         z+=1
-                #     go = 1
-                #     break
+                #samantala, ngunit, bagkus, kundi, imbes, kahit, maliban, bilang, bagamat, datapwat, samantala, habang, kasi, dahil, kung, sapagkat, dahilan, palibhasa, upang, gayundin, basta't
+                elif str(sentence[x][1]).__contains__("CC") or str(sentence[x][1]).__contains__("RBW"):
+                    z = 0
+                    while z < len(cc):
+                        if str(cc[z]) == str(sentence[x][0]) :
+                            print('PU<ASG"JA')
+                            go = 1
+                            break
+                        z+=1
+                    if go == 1:
+                        break
 
                 if str(sentence[x][1]).__contains__("JJ") and not (str(sentence[x-1][1]).__contains__("DT") or str(sentence[x-2][1]).__contains__("JJ") or str(sentence[x][1]).__contains__("JJN")
                                                                    or (str(sentence[x-1][0]).__contains__("ng") and str(sentence[x-1][1]).__contains__("CCB"))):
@@ -585,7 +645,7 @@ def translate():
     while i < len(phrases1):
         print('\n', phrases1[i])
         passed = 0
-        change = 0
+        jjc = 0
 
         while x < len(phrases1[i]):
             translated = ''
@@ -598,11 +658,13 @@ def translate():
                nextTag = phrases1[i][x+1][1]
 
             #Checking 'ang'
-            if str(tag).__contains__("DTP"):
-                if str(word).__contains__("ang"):
+            if str(tag).__contains__("DTP") or str(tag).__contains__("DTC"):
+
+                if str(word).__contains__("ang") and not str(nextTag).__contains__("PRSP"):
                     translated = 'the'
                 elif str(word).__contains__("kay"):
                     translated = 'to'
+
                 flag = 0
 
             #Checking 'ng'
@@ -615,6 +677,24 @@ def translate():
                     translated = 'of'
                 flag = 0
 
+            #Checking JJC
+            elif str(tag).__contains__("JJCC"):
+                jjc = 0
+                with open('Eng_Fil_1.csv') as fp:
+                    line = fp.readline()
+                    while line:
+                        temp = re.findall(r"[\w']+|[+|/ ]", line)
+                        if str(temp[1]).lower() == str(phrases1[i][x+1][0]).lower() and temp[2] == 'JJR':
+                            translated = ''
+                            jjc = 1
+                            break
+                        elif not(str(temp[1]).lower() == str(phrases1[i][x+1][0]).lower() and temp[2] == 'JJR'):
+                            translated = 'more'
+
+                        line = fp.readline()
+                fp.close()
+                flag = 0
+
             # Checking 'na'
             elif str(tag).__contains__("CCP") and str(word).__contains__("na"):
                 if str(prevTag).__contains__('VB') or str(prevTag).__contains__('JJ'):
@@ -622,9 +702,20 @@ def translate():
                 flag = 0
 
             #Checking Plural Form
-            elif str(tag).__contains__("DTCP"):
-               plural = 1
-               flag = 0
+            elif str(tag).__contains__("DTCP") or str(tag).__contains__("DTCP"):
+                if str(word).__contains__("kina"):
+                    translated = 'to'
+                plural = 1
+                flag = 0
+
+            #Checking LM
+            elif str(tag).__contains__("LM"):
+                if plural == 1:
+                    translated = 'were'
+                else:
+                    translated = 'was'
+                flag = 0
+
 
             #Checking Pronouns
             elif str(tag).__contains__("PRS") or str(tag).__contains__('PRP'):
@@ -653,43 +744,67 @@ def translate():
                         line = fp.readline()
                 fp.close()
 
-
-
                 flag = 0
+
 
             elif str(tag).__contains__("NNP"):
                 translated = word
                 flag = 0
 
             else:
-                #if Plural Form
-                if str(tag).__contains__("NN") and plural == 1:
-                    with open('Plural.csv') as fp:
-                        line = fp.readline()
-                        while line:
-                            temp = re.findall(r"[\w']+|[+|/ ]", line)
-                            if str(temp[1]).lower() == str(word).lower():
-                                translated = temp[0]
-                                flag = 0
-                                break
-                            line = fp.readline()
-                    fp.close()
-                    plural = 0
+                with open('Eng_Fil_1.csv') as fp:
+                    line = fp.readline()
+                    while line:
+                        temp = re.findall(r"[\w']+|[+|/ ]", line)
+                        if str(temp[1]).lower() == str(word).lower():
 
-                else:
-                    with open('Eng_Fil_1.csv') as fp:
-                        line = fp.readline()
-                        while line:
-                            temp = re.findall(r"[\w']+|[+|/ ]", line)
-                            if str(temp[1]).lower() == str(word).lower():
+                            if str(tag).__contains__("NN") and plural == 1:
+                                if temp[2] == 'NNS':
+                                    translated = temp[0]
+                                    flag = 0
+                                    break
+                            elif str(tag).__contains__("NN"):
                                 translated = temp[0]
                                 flag = 0
                                 break
-                            line = fp.readline()
-                    fp.close()
+
+                            elif str(tag).__contains__("VB") and plural == 1:
+                                if temp[2] != 'VBZ':
+                                    translated = temp[0]
+                                    flag = 0
+                                    break
+                            elif str(tag).__contains__("VB"):
+                                translated = temp[0]
+                                flag = 0
+                                break
+
+                            elif str(tag).__contains__("JJ") and jjc == 1:
+                                if temp[2] == 'JJR':
+                                    jjc = 0
+                                    translated = temp[0]
+                                    flag = 0
+                                    break
+                            elif str(tag).__contains__("JJ"):
+                                if str(temp[2]).__contains__("JJ"):
+                                    translated = temp[0]
+                                    flag = 0
+                                    break
+
+                            elif str(tag).__contains__("RBD"):
+                                if temp[2] == 'RB':
+                                    translated = temp[0]
+                                    flag = 0
+                                    break
+                            else:
+                                translated = temp[0]
+                                flag = 0
+                                break
+
+                        line = fp.readline()
+                fp.close()
 
             if flag:
-                print(word , end=' ')
+                print(word, end=' ')
             x += 1
             print(translated, end=' ')
             prevTag = phrases1[i][x - 1][1]
