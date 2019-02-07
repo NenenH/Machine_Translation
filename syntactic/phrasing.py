@@ -11,19 +11,12 @@ def postTagged(n):
     rules = []
     i = 1
     with open('Postagged_words.tag') as fp:
-        if n > i:
-            while True:
-                line = fp.readline()
-                temp = re.findall(r"[\w']+|[+|,.?]", line)
-                if temp[0] == '.' or temp[0] == '?':
-                    break
-            i += 1
         line = fp.readline()
         while line:
             temp = re.findall(r"[\w']+|[-+|,.?]", line)
             print(temp)
             if len(temp) > 2:
-                temp = [temp[0] + temp[1] + temp[2], temp[3] ]
+                temp = [temp[0] + temp[1] + temp[2], temp[3]]
 
             rules.append(temp)
             if temp[0] == '.' or temp[0] == '?':
@@ -75,6 +68,7 @@ def rootWord(toRoot):
     verbUnlapi =['nakipag', 'nakikipag,' 'magpapa', 'magpa', 'mapagma', 'magkasing', 'mapang', 'kaka', 'kapapa','ka', 'nakapag', 'pinag', 'pina', 'mag', 'mai',  'makapag',  'mang',  'man',  'mapa'  'ma',   'nag',  'nang',  'nam', 'nai',  'na', 'pinag', 'ipinang', 'ni', 'i', 'tagapag','taga', 'tiga']
     adjUnlapi = ['kasing', 'magsing', 'sing', 'pinaka', 'mapang', 'mapam', 'ma', 'pang', 'pan', 'pala']
     nounUnlapi = ['tagapag', 'tigapag',  'taga',  'tiga',  'pakikipag',  'pag', 'man']
+    print(toRoot)
 
     for toRoot in toRoot:
         if str(toRoot[1]).__contains__("VB"):
@@ -134,7 +128,6 @@ def phrase():
     sentence = stem()
     phrase = []
     phraseList = []
-    prevTag = ''
     cc = ['samantala', 'ngunit', 'bagkus', 'kundi', 'imbes', 'kahit', 'maliban', 'bilang', 'bagamat', 'datapwat', 'samantala', 'habang', 'kasi', 'dahil', 'kung', 'sapagkat', 'dahilan', 'palibhasa', 'upang', 'gayundin', 'basta\'t']
     print(sentence)
     x = 0
@@ -157,7 +150,7 @@ def phrase():
             x -= 1
 
         # phrase start with Adverb
-        elif str(sentence[x][1]).__contains__("RB") and x ==0:
+        elif str(sentence[x][1]).__contains__("RB"):
             print("Current Word [RB]: ", sentence[x])
             while not (str(sentence[x][1]).__contains__("VB") or str(sentence[x][1]).__contains__("PMP") or str(sentence[x][1]).__contains__("PMQ")):
                 print("Current Word [RB]: ", sentence[x])
@@ -239,18 +232,16 @@ def phrase():
                 elif str(sentence[x][1]).__contains__("CC") or str(sentence[x][1]).__contains__("RBW"):
                     z = 0
                     while z < len(cc):
-                        if str(cc[z]) == str(sentence[x][0]) :
-                            print('PU<ASG"JA')
+                        if str(cc[z]) == str(sentence[x][0]):
                             go = 1
                             break
-                        z+=1
+                        z += 1
                     if go == 1:
                         break
 
                 if str(sentence[x][1]).__contains__("JJ") and not (str(sentence[x-1][1]).__contains__("DT") or str(sentence[x-2][1]).__contains__("JJ") or str(sentence[x][1]).__contains__("JJN")
                                                                    or (str(sentence[x-1][0]).__contains__("ng") and str(sentence[x-1][1]).__contains__("CCB"))):
                     break
-
 
 
                 phrase.append(sentence[x])
@@ -262,7 +253,6 @@ def phrase():
             x -= 1
 
         x += 1
-        prevTag = sentence[x-1][1]
     phrase = []
     phrase.append(sentence[len(sentence) -1])
     phraseList.append(phrase)
@@ -342,9 +332,7 @@ def structure():
 
                     #si
                     elif str(phrases[i][j][1]).__contains__("DTP") and str(phrases[i][j][0]).__contains__("si"):
-                        # phrases[i].insert(0, phrases[i].pop(j))
-                        # phrases[i].insert(1, phrases[i].pop(j+1))
-                        # print(phrases[i][j],"[DTP | si]", j)
+
                         x = 0
                         print("  [si]>", phrases[i][j][1], j)
 
@@ -387,8 +375,7 @@ def structure():
                     elif str(phrases[i][j][0]).__contains__("ang") and str(phrases[i][j][1]).__contains__("DTC") and str(phrases[i][0][0]).lower().__contains__("na"):
                         x = 0
                         print("  [ang]>", phrases[i][j][1], j)
-                        # phrases[i].insert(0, ['was', 'VBTS'])
-                        # length += 1
+
                         while str(phrases[i][j][1]).__contains__("NN") or str(phrases[i][j][1]).__contains__("PMC") \
                                 or str(phrases[i][j][0]).__contains__("at") or str(phrases[i][j][0]).__contains__("ang") \
                                 or str(phrases[i][j][1]).__contains__("JJ") or str(phrases[i][j][0]).__contains__("mga") \
@@ -448,10 +435,6 @@ def structure():
 
                     #ni
                     elif str(phrases[i][j][1]).__contains__("DTP") and str(phrases[i][j][0]).__contains__("ni"):
-                        # phrases[i].insert(0, phrases[i].pop(j))
-                        # phrases[i].insert(1, phrases[i].pop(j+1))
-                        # print(phrases[i][j],"[DTP | si]", j)
-                        # break
                         x = 0
                         print("  [ni]>", phrases[i][j][1], j)
 
@@ -526,11 +509,6 @@ def structure():
 
                 # si
                 elif str(phrases[i][j][1]).__contains__("DTP") and str(phrases[i][j][0]).__contains__("si"):
-                    # phrases[i].insert(0, phrases[i].pop(j))
-                    # phrases[i].insert(1, phrases[i].pop(j + 1))
-                    #
-                    # print(phrases[i][j], "[DTP | si]", j)
-                    # break
                     x = 0
                     print("  [si]>", phrases[i][j][1], j)
 
@@ -635,6 +613,7 @@ def structure():
 #Translate
 def translate():
     phrases1 = structure()
+    fp1 = open('Translated.txt', 'w')
     print('\n\n')
     i = x = 0
     prevTag = ''
@@ -657,18 +636,9 @@ def translate():
             if x < (len(phrases1[i]) - 1):
                nextTag = phrases1[i][x+1][1]
 
-            #Checking 'ang'
-            if str(tag).__contains__("DTP") or str(tag).__contains__("DTC"):
-
-                if str(word).__contains__("ang") and not str(nextTag).__contains__("PRSP"):
-                    translated = 'the'
-                elif str(word).__contains__("kay"):
-                    translated = 'to'
-
-                flag = 0
 
             #Checking 'ng'
-            elif str(tag).__contains__("CCB") and str(word).__contains__("ng"):
+            if str(tag).__contains__("CCB") and str(word).__contains__("ng"):
                 if (str(phrases1[i][0][0]) == 'ng' or str(prevTag).__contains__('VB')) and len(phrases1[i]) != 1:
                     translated = 'the'
                 elif str(phrases1[i][0][0]) == 'ng':
@@ -702,11 +672,22 @@ def translate():
                 flag = 0
 
             #Checking Plural Form
-            elif str(tag).__contains__("DTCP") or str(tag).__contains__("DTCP"):
+            elif str(tag).__contains__("DTCP") or str(tag).__contains__("DTPP"):
                 if str(word).__contains__("kina"):
                     translated = 'to'
                 plural = 1
                 flag = 0
+
+            # Checking 'ang'
+            elif str(tag).__contains__("DTP") or str(tag).__contains__("DTC"):
+                if str(word).lower().__contains__("ang") and not str(nextTag).__contains__("PRSP"):
+                    translated = 'the'
+
+                elif str(word).__contains__("kay"):
+                    translated = 'to'
+
+                flag = 0
+
 
             #Checking LM
             elif str(tag).__contains__("LM"):
@@ -715,7 +696,6 @@ def translate():
                 else:
                     translated = 'was'
                 flag = 0
-
 
             #Checking Pronouns
             elif str(tag).__contains__("PRS") or str(tag).__contains__('PRP'):
@@ -805,11 +785,15 @@ def translate():
 
             if flag:
                 print(word, end=' ')
+                fp1.write(word + ' ')
+
             x += 1
             print(translated, end=' ')
+            fp1.write(translated + ' ')
             prevTag = phrases1[i][x - 1][1]
         i += 1
-        x= 0
+        x = 0
+    fp1.close()
 
 #Running
 translate()
