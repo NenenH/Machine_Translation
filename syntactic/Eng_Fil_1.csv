@@ -1760,6 +1760,7 @@ batter,humampas,NN
 battered,inaabusong,VBN
 batteries,Baterya,NNS
 battery,baterya,NN
+battle,laban,NN
 battle,labanan,NN
 battler,kawal,NN
 battles,laban,NNS
@@ -8706,6 +8707,7 @@ forefront,harapan,NN
 foregoing,nauuna,VBG
 foreground,harapan,NN
 forehand,pangkinabukasan,NN
+on,noon,R
 forehead,noo,NN
 foreheads,noo,NNS
 foreign,dayuhan,JJ
@@ -9476,6 +9478,7 @@ godmother,ninang,NN
 gods,dios,NNS
 goer,kasapi,NN
 goes,napupunta,VBZ
+go,pupunta,VBN
 goest,pumaroon,NN
 goeth,lumalakad,NNS
 goggled,nakasalamin,VBN
@@ -14429,6 +14432,7 @@ oolitic,oulitik,JJ
 ooze,humulas,NN
 opacity,kalabuan,NN
 opal,opalo,NN
+tomorrow,bukas,RB
 open,bukas,JJ
 opened,binuksan,VBN
 opener,pambukas,NN
@@ -15720,6 +15724,7 @@ playful,mapaglaro,NN
 playground,palaruan,NN
 playgrounds,palaruan,NNS
 playing,naglalaro,VBG
+playing,naglaro,VBG
 playmate,kalaro,NN
 playmates,kalaro,NNS
 plays,gumaganap,NNS
@@ -21859,6 +21864,7 @@ tricycle,traysikel,NN
 tricycles,tricycle,NNS
 trident,salapang,NN
 tried,Sinubukan,VBN
+tried,Sinubukan,RB
 trier,tagalitis,NN
 tries,pagsusubok,NNS
 trifling,mababaw,VBG
@@ -23545,6 +23551,7 @@ yes,Oo,NNS
 yes,Oo,NNS
 yeses,opo,NNS
 yesterday,kahapon,NN
+yesterday,kahapon,JJ
 yesterevening,kagabi,VBG
 yesternight,kagabi,NN
 yesternoon,yesternook,NN

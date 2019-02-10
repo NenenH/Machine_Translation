@@ -673,6 +673,7 @@ def translate():
 
             #Checking Plural Form
             elif str(tag).__contains__("DTCP") or str(tag).__contains__("DTPP"):
+                print('PLURAL')
                 if str(word).__contains__("kina"):
                     translated = 'to'
                 plural = 1
@@ -739,18 +740,22 @@ def translate():
                         if str(temp[1]).lower() == str(word).lower():
 
                             if str(tag).__contains__("NN") and plural == 1:
+
                                 if temp[2] == 'NNS':
                                     translated = temp[0]
+                                    plural = 0
                                     flag = 0
                                     break
                             elif str(tag).__contains__("NN"):
-                                translated = temp[0]
-                                flag = 0
-                                break
+                                if temp[2] != 'NNS':
+                                    translated = temp[0]
+                                    flag = 0
+                                    break
 
                             elif str(tag).__contains__("VB") and plural == 1:
                                 if temp[2] != 'VBZ':
                                     translated = temp[0]
+                                    plural = 0
                                     flag = 0
                                     break
                             elif str(tag).__contains__("VB"):
@@ -798,4 +803,5 @@ def translate():
 #Running
 translate()
 print("\nDone")
+print("GOGO")
 
