@@ -1,25 +1,10 @@
-Hindi	RBF
-bababa	VBTF
-sa	CCT
-dalawang	JJN_CCP
-tao	NNC
-ang	DTC
-nasugatan	VBTS
-matapos	VBW
-magbanggaan	VBW
-ang	DTC
-dalawang	JJN_CCP
-tren	NNC
-na	CCP
-may	VBH
-kargo	NNC
-malapit	JJD
-sa	CCT
-Kotri	NNP
-sa	CCT
-hilagang	JJD_CCP
-Pakistan	NNP
-ngayong	RBW_CCP
-araw	NNC
+Maganda	JJD
+si	DTP
+Anna	NNP
+.	PMP
+
+Mabait	JJD
+si	DTP
+Ben	NNP
 .	PMP
 

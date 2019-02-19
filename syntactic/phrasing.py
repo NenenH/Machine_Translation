@@ -7,29 +7,34 @@ subprocess.call(['java', '-cp', 'stanford-postagger.jar', 'edu.stanford.nlp.tagg
              'tsv', '-outputFile', 'Postagged_words.tag'])
 
 #Read tag words
-def postTagged(n):
+def postTagged():
+    rule = []
     rules = []
-    i = 1
     with open('Postagged_words.tag') as fp:
         line = fp.readline()
         while line:
             temp = re.findall(r"[\w']+|[-+|,.?]", line)
-            print(temp)
+            # print(temp)
             if len(temp) > 2:
                 temp = [temp[0] + temp[1] + temp[2], temp[3]]
 
-            rules.append(temp)
-            if temp[0] == '.' or temp[0] == '?':
-                fp.close()
-                return rules
+            if temp != []:
+                print(temp)
+                rules.append(temp)
+
+                if (temp[0] == '.' or temp[0] == '?'):
+                    rule.append(rules)
+                    rules = []
+                    # fp.close()
+                    # return rules
             line = fp.readline()
 
     fp.close()
-    return rules
+    return rule
 
 #Stemmer
-def stem():
-    toStem = (postTagged(1))
+def stem(toStem):
+    # toStem = (postTagged())
     x = 0
     while x < len(toStem):
         if str(toStem[x][1]).__contains__("_CCP"):
@@ -124,8 +129,7 @@ def rootWord(toRoot):
     return toRoot
 
 #Return phrases
-def phrase():
-    sentence = stem()
+def phrase(sentence):
     phrase = []
     phraseList = []
     cc = ['samantala', 'ngunit', 'bagkus', 'kundi', 'imbes', 'kahit', 'maliban', 'bilang', 'bagamat', 'datapwat', 'samantala', 'habang', 'kasi', 'dahil', 'kung', 'sapagkat', 'dahilan', 'palibhasa', 'upang', 'gayundin', 'basta\'t']
@@ -259,10 +263,10 @@ def phrase():
     return phraseList
 
 #Transfer the filipino structure to english structure
-def structure():
+def structure(phrases):
     i = 0
 
-    phrases = phrase()
+    # phrases = phrase()
 
     print('\n\n')
     while i < len(phrases):
@@ -611,9 +615,9 @@ def structure():
     return phrases
 
 #Translate
-def translate():
-    phrases1 = structure()
-    fp1 = open('Translated.txt', 'w')
+def translate(phrases1):
+    # phrases1 = structure()
+    fp1 = open('Translated.txt', 'a')
     print('\n\n')
     i = x = 0
     prevTag = ''
@@ -801,7 +805,15 @@ def translate():
     fp1.close()
 
 #Running
-translate()
+rules = postTagged()
+fp1 = open('Translated.txt', 'w')
+fp1.close()
+for toStem in rules:
+    sentence = stem(toStem)
+    phrases = phrase(sentence)
+    phrases1 = structure(phrases)
+    translate(phrases1)
+
 print("\nDone")
 print("GOGO")
 
