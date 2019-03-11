@@ -1,0 +1,87 @@
+Syntantic Rules 
+
+Lexical Phrase
+DP [Determiner]
+PP [Preprosition]
+VP [Verb]
+AP [Adjective]
+NP [Noun]
+
+QP [Quantifier]
+
+
+DP = D' + QP | D' + AP
+D' = D + NP
+
+PP = P' + ADV | P' + TP
+P' = P + DP
+
+AP = A' + ADV
+A' = A + DP
+
+VP = V' + ADV | V' + DP
+V' = V + DP ¦ V + PRN ¦ V' + CP
+
+NP = N' + attribute phrase
+N' = N + PP
+
+
+
+TP [Tense Phrase]
+TP = T' + DP | T' + QP
+
+Sentence with a Verbal Predicate: Voice Affix as Head
+T' = T[um, in] + VP
+
+Adjective Predicate 
+T' = T[ma] + AP
+
+Locative Predicate
+T' = T[na-] + PP
+
+Existential Predicate
+T' = T[may] + VP
+
+Nominal Predicate
+T' = T[taga] + VP
+
+
+
+Subject Specifier
+
+Verbal Phrase
+if DP is specs VP
+
+
+
+Tense Phrase
+spec-VP-to-Spec-TP movement
+spec in VP move to spec TP then spec TP is subject
+
+CP [Complementiser Phrase] 
+complementiser [na, kung, kaya, ...]
+CP = C' + TP 
+C' = C[EPP, EXIST, WH] + TP
+
+Sentence with 'Double Subjects'
+
+
+Dependent Clause as CP
+
+
+Independent Clause as CP
+
+MOVEMENT
+V-to-C Movement
+Focalisation
+
+
+
+
+
+
+
+
+
+
+
